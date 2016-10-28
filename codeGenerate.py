@@ -4,7 +4,7 @@ import os
 import postgreSQLDB
 
 generate_path = "d:/generate/"
-generate_tables = "sensor_atom"
+generate_tables = "shared"
 
 global_interfaces_base_space = "rhxtune.smarthome.api.bases"
 global_model_name_space = "rhxtune.smarthome.api.models"
@@ -14,6 +14,13 @@ global_interfaces_name_space = "rhxtune.smarthome.api.interfaces"
 global_services_name_space = "rhxtune.smarthome.api.services"
 global_controller_name_sapce = "rhxtune.smarthome.api.controllers"
 
+# global_interfaces_base_space = "lite.iot.api.bases"
+# global_model_name_space = "lite.iot.api.models"
+# global_xml_mapper_name_space = "lite.iot.api.xmlmapper"
+# global_java_mapper_name_space = "lite.iot.api.mappers"
+# global_interfaces_name_space = "lite.iot.api.interfaces"
+# global_services_name_space = "lite.iot.api.services"
+# global_controller_name_sapce = "lite.iot.api.controllers"
 
 # 获取当前数据库下所有表
 def get_all_tables():
