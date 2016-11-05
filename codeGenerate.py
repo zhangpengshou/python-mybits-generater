@@ -4,7 +4,7 @@ import os
 import postgreSQLDB
 
 generate_path = "d:/generate/"
-generate_tables = "shared"
+generate_tables = "atom_type"
 
 global_interfaces_base_space = "rhxtune.smarthome.api.bases"
 global_model_name_space = "rhxtune.smarthome.api.models"
@@ -231,7 +231,7 @@ def generate_single_model(schema_name, table_name, is_view=False):
 
 # 根据schema和表名生成单个mybatis_xml_mapper
 def generate_single_mybatis_xml_mapper(schema_name, table_name, is_view=False):
-    xml_mapper_header = xml_mapper_body = ""
+    xml_mapper_body = ""
     all_columns = get_all_columns(schema_name, table_name)
     primary_key_column = get_primary_key_column_from_clumns_list(table_name, all_columns)
     common_key_columns = get_primary_key_column_from_clumns_list(table_name, all_columns, False)
@@ -272,17 +272,24 @@ def generate_single_mybatis_xml_mapper(schema_name, table_name, is_view=False):
         # insert.columns
         xml_mapper_body += '''    <trim prefix="(" suffix=")" suffixOverrides="," >\r'''
         for column in all_columns:
-            xml_mapper_body += '''      <if test="{0} != null" >\r'''.format(second_word_behind_capitalize(column[1], "_"))
-            xml_mapper_body += '''        "{0}",\r'''.format(column[1])
-            xml_mapper_body += "      </if>\r"
+            if (column[1] == 'update_time'):
+                xml_mapper_body += '''      "{0}",\r'''.format(column[1])
+            else:
+                xml_mapper_body += '''      <if test="{0} != null" >\r'''.format(
+                    second_word_behind_capitalize(column[1], "_"))
+                xml_mapper_body += '''        "{0}",\r'''.format(column[1])
+                xml_mapper_body += "      </if>\r"
         xml_mapper_body+= "    </trim>\r"
 
         # insert.values
         xml_mapper_body += '''    <trim prefix="values (" suffix=")" suffixOverrides="," >\r'''
         for column in all_columns:
-            xml_mapper_body += '''      <if test="{0} != null" >\r'''.format(second_word_behind_capitalize(column[1], "_"))
-            xml_mapper_body += '''        #{0}{1},jdbcType={2}{3},\r'''.format("{", second_word_behind_capitalize(column[1], "_"), get_jdbc_type_from_sql_type(column[2]), "}")
-            xml_mapper_body += "      </if>\r"
+            if (column[1] == 'update_time'):
+                xml_mapper_body += '''      CURRENT_TIMESTAMP,\r'''
+            else:
+                xml_mapper_body += '''      <if test="{0} != null" >\r'''.format(second_word_behind_capitalize(column[1], "_"))
+                xml_mapper_body += '''        #{0}{1},jdbcType={2}{3},\r'''.format("{", second_word_behind_capitalize(column[1], "_"), get_jdbc_type_from_sql_type(column[2]), "}")
+                xml_mapper_body += "      </if>\r"
         xml_mapper_body += "    </trim>\r"
         xml_mapper_body += "  </insert>\r"
 
@@ -337,9 +344,12 @@ def generate_single_mybatis_xml_mapper(schema_name, table_name, is_view=False):
 
         # update.columns
         for column in common_key_columns:
-            xml_mapper_body += '''      <if test="{0} != null" >\r'''.format(second_word_behind_capitalize(column[1], "_"))
-            xml_mapper_body += '''        "{0}" = #{1}{2},jdbcType={3}{4},\r'''.format(column[1], "{", second_word_behind_capitalize(column[1], "_"), get_jdbc_type_from_sql_type(column[2]), "}")
-            xml_mapper_body += "      </if>\r"
+            if (column[1] == 'update_time'):
+                xml_mapper_body += '''      "update_time" = CURRENT_TIMESTAMP,\r'''
+            else:
+                xml_mapper_body += '''      <if test="{0} != null" >\r'''.format(second_word_behind_capitalize(column[1], "_"))
+                xml_mapper_body += '''        "{0}" = #{1}{2},jdbcType={3}{4},\r'''.format(column[1], "{", second_word_behind_capitalize(column[1], "_"), get_jdbc_type_from_sql_type(column[2]), "}")
+                xml_mapper_body += "      </if>\r"
         xml_mapper_body += "    </set>\r"
 
         if len(primary_key_column) == 1:
@@ -355,6 +365,64 @@ def generate_single_mybatis_xml_mapper(schema_name, table_name, is_view=False):
                 column_index += 1
 
         xml_mapper_body += "  </update>\r"
+
+    # select
+    xml_mapper_body += '''  <select id="first" resultMap="{1}Map" parameterType="{0}.{1}" >\r'''.format(
+        global_model_name_space, second_word_behind_capitalize(table_name, "_", True))
+    xml_mapper_body += "    select\r"
+
+    column_index = 0
+    order_columns = ''
+    for column in all_columns:
+        if column_index == 0:
+            xml_mapper_body += '''      "{0}", '''.format(column[1])
+        elif column_index == len(all_columns) - 1:
+            xml_mapper_body += '''"{0}"\r'''.format(column[1])
+        else:
+            if column_index % 6 == 0:
+                xml_mapper_body += "\r      "
+                xml_mapper_body += '''"{0}", '''.format(column[1])
+            else:
+                xml_mapper_body += '''"{0}", '''.format(column[1])
+        column_index += 1
+
+    xml_mapper_body += '''    from "{0}"\r'''.format(table_name)
+
+    xml_mapper_body += "    <where>\r"
+
+    column_index = 0
+    for column in all_columns:
+        xml_mapper_body += '''      <if test="{0} != null"> \r'''.format(
+            second_word_behind_capitalize(column[1], "_"))
+        if column_index == 0:
+            xml_mapper_body += '''        "{0}" = #{1}{2}{3} \r'''.format(column[1], "{",
+                                                                          second_word_behind_capitalize(column[1],
+                                                                                                        "_"), "}")
+        else:
+            xml_mapper_body += '''        and "{0}" = #{1}{2}{3} \r'''.format(column[1], "{",
+                                                                              second_word_behind_capitalize(
+                                                                                  column[1], "_"), "}")
+        column_index += 1
+
+        xml_mapper_body += "      </if> \r"
+    xml_mapper_body += "    </where> \r"
+
+    # order by primary key
+    if len(primary_key_column) == 1:
+        xml_mapper_body += '''    order by "{0}" limit 1\r'''.format(primary_key_column[0][1])
+    elif len(primary_key_column) > 1:
+        column_index = 0
+        for column in primary_key_column:
+            if column_index == 0:
+                order_columns += '{0}'.format(column[1])
+            else:
+                order_columns += ',{0}'.format(column[1])
+            column_index += 1
+
+        xml_mapper_body += '''    order by "{0}" limit 1\r'''.format(order_columns)
+
+    xml_mapper_body += "  </select>\r"
+
 
     # select
     xml_mapper_body += '''  <select id="select" resultMap="{1}Map" parameterType="{0}.{1}" >\r'''.format(global_model_name_space, second_word_behind_capitalize(table_name, "_", True))
@@ -418,6 +486,7 @@ def generate_single_java_mapper(schema_name, table_name, is_view=False):
     if is_view == False:
         java_mapper_body += "    Integer delete({0} {1});\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"))
         java_mapper_body += "    Integer updateByPrimaryKey({0} {1});\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"))
+    java_mapper_body += "    {0} first({0} {1});\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"))
     java_mapper_body += "    List<{0}> select({0} {1});\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"))
     java_mapper_body += "}\r"
 
