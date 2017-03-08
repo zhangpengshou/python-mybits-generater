@@ -10,7 +10,9 @@ while True:
     line = scriptFile.readline()
     if line:
         if line.find("_id") > -1:
-            line = line.replace("INT4", "BIGINT").replace("integer", "BIGINT")
+            line = line.replace("INT4", "BIGINT").replace("INT8", "BIGINT").replace("integer", "BIGINT")
+        if line.find("INT8") > -1:
+            line = line.replace("INT8", "BIGINT")
         if line.find("=========") > -1:
             pass
         elif line.find("DBMS name:") > -1:
@@ -22,7 +24,7 @@ while True:
         if line.find("drop table") > -1:
             drop_table += line
         elif line.find(" DATE ") > -1:
-            text += line.replace(" DATE ","timestamp").replace("CURRENT_DATE","CURRENT_TIMESTAMP")
+            text += line.replace(" DATE ", "timestamp").replace("CURRENT_DATE", "CURRENT_TIMESTAMP")
         elif line.find("create table ") > -1:
             tablename = line[line.find("create table ") + 13:line.find(" (")]
             text += line

@@ -4,15 +4,15 @@ import os
 import postgreSQLDB
 
 generate_path = "d:/generate/"
-generate_tables = "atom_type"
+generate_tables = "device_view"
 
-global_interfaces_base_space = "rhxtune.smarthome.api.bases"
-global_model_name_space = "rhxtune.smarthome.api.models"
-global_xml_mapper_name_space = "rhxtune.smarthome.api.xmlmapper"
-global_java_mapper_name_space = "rhxtune.smarthome.api.mappers"
-global_interfaces_name_space = "rhxtune.smarthome.api.interfaces"
-global_services_name_space = "rhxtune.smarthome.api.services"
-global_controller_name_sapce = "rhxtune.smarthome.api.controllers"
+global_interfaces_base_space = "smarthome.service.bases"
+global_model_name_space = "smarthome.service.models"
+global_xml_mapper_name_space = "smarthome.service.xmlmapper"
+global_java_mapper_name_space = "smarthome.service.mappers"
+global_interfaces_name_space = "smarthome.service.interfaces"
+global_services_name_space = "smarthome.service.services"
+global_controller_name_sapce = "smarthome.service.controllers"
 
 # global_interfaces_base_space = "lite.iot.api.bases"
 # global_model_name_space = "lite.iot.api.models"
@@ -827,7 +827,7 @@ for table in get_all_tables():
     schema_name = table[0]
     table_name = table[1]
 
-    if generate_tables.strip() != "" and generate_tables.find(table_name) < 0:
+    if generate_tables.strip() != "" and generate_tables.lower() != str(table_name).lower():
         continue
 
     # gengreate mode
