@@ -4,7 +4,7 @@ import os
 import postgreSQLDB
 
 generate_path = "d:/generate/"
-generate_tables = "device_view"
+generate_tables = "contacts"
 
 global_interfaces_base_space = "smarthome.service.bases"
 global_model_name_space = "smarthome.service.models"
@@ -12,7 +12,7 @@ global_xml_mapper_name_space = "smarthome.service.xmlmapper"
 global_java_mapper_name_space = "smarthome.service.mappers"
 global_interfaces_name_space = "smarthome.service.interfaces"
 global_services_name_space = "smarthome.service.services"
-global_controller_name_sapce = "smarthome.service.controllers"
+global_controller_name_sapce = "smarthome.api.controllers"
 
 # global_interfaces_base_space = "lite.iot.api.bases"
 # global_model_name_space = "lite.iot.api.models"
@@ -60,6 +60,10 @@ def get_jdbc_type_from_sql_type(column_type):
     jdbc_type = ""
     jdbc_type = str(column_type).lower()
 
+    if column_type.find("int2") > -1:
+        jdbc_type = "INTEGER"
+    if column_type.find("smallint") > -1:
+        jdbc_type = "INTEGER"
     if column_type.find("int4") > -1:
         jdbc_type = "INTEGER"
     elif column_type.find("int8") > -1:
@@ -84,7 +88,16 @@ def get_jdbc_type_from_sql_type(column_type):
 def get_java_type_from_sql_type(column_type, return_fullname=False):
     mapping_list = ['', '']
     column_type = str(column_type).lower()
-
+    if column_type.find("int2") > -1:
+        if return_fullname:
+            mapping_list[0] = "java.lang.Integer"
+        else:
+            mapping_list[0] = "Integer"
+    if column_type.find("smallint") > -1:
+        if return_fullname:
+            mapping_list[0] = "java.lang.Integer"
+        else:
+            mapping_list[0] = "Integer"
     if column_type.find("int4") > -1:
         if return_fullname:
             mapping_list[0] = "java.lang.Integer"
@@ -655,7 +668,7 @@ def generate_single_service(schema_name, table_name, is_view=False):
             service_body += "        else{\r"
             service_body += "            {0} {1} = new {0}();\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"))
             service_body += primary_key_set_value_group
-            service_body += "            return ({0}Mapper.select({0}) == null || {0}Mapper.select({0}).size() == 0) ? null : {0}Mapper.select({0}).get(0);\r".format(second_word_behind_capitalize(table_name, "_"))
+            service_body += "            return {0}Mapper.first({0});\r".format(second_word_behind_capitalize(table_name, "_"))
             service_body += "        }\r"
             service_body += "    }\r"
 
