@@ -3,6 +3,7 @@ scriptFile = open("d:\\camera.sql", "r")
 text = ""
 drop_sequence= ""
 create_sequence= ""
+schemaname=""
 tablename=""
 drop_view=""
 drop_table=""
@@ -19,6 +20,10 @@ while True:
             pass
         elif line.find("Created on:") > -1:
             pass
+        elif line.find("set table ownership") > -1:
+            continue
+        elif line.find("alter table") > -1 and line.find("owner to") > -1:
+            continue
         if line.find("drop view") > -1:
             drop_view += line
         if line.find("drop table") > -1:
@@ -27,6 +32,8 @@ while True:
             text += line.replace(" DATE ", "timestamp").replace("CURRENT_DATE", "CURRENT_TIMESTAMP")
         elif line.find("create table ") > -1:
             tablename = line[line.find("create table ") + 13:line.find(" (")]
+            if tablename.find(".") > -1:
+                schemaname = tablename.split(".")[0]
             text += line
         elif line.find("SERIAL") > -1:
             array = line.replace(" ","").split("SERIAL")
@@ -36,7 +43,13 @@ while True:
                 ext_primary_key = tablename.replace("data", "") + primary_key
             elif primary_key == "extend_id":
                 ext_primary_key = tablename.replace("extend", "") + primary_key
-            text += "   {0}    BIGINT default nextval('seq_{1}')    {2}".format(array[0], ext_primary_key, array[1].replace("notnull", "not null"))
+
+            if schemaname == "":
+                text += "   {0}    BIGINT default nextval('seq_{1}')    {2}".format(array[0], ext_primary_key, array[1].replace("notnull", "not null"))
+            else:
+                text += "   {0}    BIGINT default nextval('{1}.seq_{2}')    {3}".format(array[0], schemaname, ext_primary_key,
+                                                                                    array[1].replace("notnull",
+                                                                                                     "not null"))
         elif line.find("constraint") > -1:
             primary_key = line[line.find("(") + 1:line.find(")")]
             ext_primary_key = line[line.find("(") + 1:line.find(")")]
@@ -45,8 +58,12 @@ while True:
             elif primary_key == "extend_id":
                 ext_primary_key = tablename.replace("extend", "") + primary_key
             text += "   constraint pk_{0} primary key ({1})\r".format(ext_primary_key, primary_key)
-            drop_sequence += "drop sequence if exists seq_{0};\r".format(ext_primary_key)
-            create_sequence += "create sequence seq_{0}  start 1001;\r".format(ext_primary_key)
+            if schemaname == "":
+                drop_sequence += "drop sequence if exists seq_{0};\r".format(ext_primary_key)
+                create_sequence += "create sequence seq_{0}  start 1001;\r".format(ext_primary_key)
+            else:
+                drop_sequence += "drop sequence if exists {0}.seq_{1};\r".format(schemaname, ext_primary_key)
+                create_sequence += "create sequence {0}.seq_{1}  start 1001;\r".format(schemaname, ext_primary_key)
         else:
             text += line
     else:
