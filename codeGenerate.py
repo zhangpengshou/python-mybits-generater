@@ -4,7 +4,8 @@ import os
 import postgreSQLDB
 
 generate_path = "d:/generate/"
-generate_tables = "contacts"
+generate_tables = "customer"
+
 
 global_interfaces_base_space = "smarthome.service.bases"
 global_model_name_space = "smarthome.service.models"
@@ -14,13 +15,15 @@ global_interfaces_name_space = "smarthome.service.interfaces"
 global_services_name_space = "smarthome.service.services"
 global_controller_name_sapce = "smarthome.api.controllers"
 
-# global_interfaces_base_space = "lite.iot.api.bases"
-# global_model_name_space = "lite.iot.api.models"
-# global_xml_mapper_name_space = "lite.iot.api.xmlmapper"
-# global_java_mapper_name_space = "lite.iot.api.mappers"
-# global_interfaces_name_space = "lite.iot.api.interfaces"
-# global_services_name_space = "lite.iot.api.services"
-# global_controller_name_sapce = "lite.iot.api.controllers"
+'''
+global_interfaces_base_space = "lite.iot.api.bases"
+global_model_name_space = "lite.iot.api.models"
+global_xml_mapper_name_space = "lite.iot.api.xmlmapper"
+global_java_mapper_name_space = "lite.iot.api.mappers"
+global_interfaces_name_space = "lite.iot.api.interfaces"
+global_services_name_space = "lite.iot.api.services"
+global_controller_name_sapce = "lite.iot.api.controllers"
+'''
 
 # 获取当前数据库下所有表
 def get_all_tables():
@@ -280,7 +283,10 @@ def generate_single_mybatis_xml_mapper(schema_name, table_name, is_view=False):
             xml_mapper_body += '''      SELECT {0}\r'''.format(primary_key_column[0][4]).replace("::regclass","")
             xml_mapper_body += "    </selectKey>\r"
 
-        xml_mapper_body += '''    insert into "{0}"\r'''.format(table_name)
+        if schema_name == "public":
+            xml_mapper_body += '''    insert into "{0}"\r'''.format(table_name)
+        else:
+            xml_mapper_body += '''    insert into "{0}"."{1}"\r'''.format(schema_name, table_name)
 
         # insert.columns
         xml_mapper_body += '''    <trim prefix="(" suffix=")" suffixOverrides="," >\r'''
@@ -310,7 +316,11 @@ def generate_single_mybatis_xml_mapper(schema_name, table_name, is_view=False):
     xml_mapper_body += '''  <select id="count" resultType="java.lang.Integer" parameterType="{0}.{1}">\r'''.format(global_model_name_space, second_word_behind_capitalize(table_name, "_", True))
 
     xml_mapper_body += "    select count(*) \r"
-    xml_mapper_body += '''    from "{0}"\r'''.format(table_name)
+
+    if schema_name == "public":
+        xml_mapper_body += '''    from "{0}"\r'''.format(table_name)
+    else:
+        xml_mapper_body += '''    from "{0}"."{1}"\r'''.format(schema_name, table_name)
     xml_mapper_body += "    <where>\r"
 
     column_index = 0
@@ -331,8 +341,10 @@ def generate_single_mybatis_xml_mapper(schema_name, table_name, is_view=False):
         # delete by primary key
         xml_mapper_body += '''  <delete id="delete" parameterType="{0}.{1}">\r'''.format(global_model_name_space, second_word_behind_capitalize(table_name, "_", True))
 
-        xml_mapper_body += '''    delete from "{0}"\r'''.format(table_name)
-
+        if schema_name == "public":
+            xml_mapper_body += '''    delete from "{0}"\r'''.format(table_name)
+        else:
+            xml_mapper_body += '''    delete from "{0}"."{1}"\r'''.format(schema_name, table_name)
         xml_mapper_body += "    <where>\r"
 
         column_index = 0
@@ -352,7 +364,10 @@ def generate_single_mybatis_xml_mapper(schema_name, table_name, is_view=False):
     if is_view == False:
         # update by primary key
         xml_mapper_body += '''  <update id="updateByPrimaryKey" parameterType="{0}.{1}">\r'''.format(global_model_name_space, second_word_behind_capitalize(table_name, "_", True))
-        xml_mapper_body += '''    update "{0}"\r'''.format(str(table_name))
+        if schema_name == "public":
+            xml_mapper_body += '''    update "{0}"\r'''.format(str(table_name))
+        else:
+            xml_mapper_body += '''    update "{0}"."{1}"\r'''.format(str(schema_name), str(table_name))
         xml_mapper_body += "    <set>\r"
 
         # update.columns
@@ -399,8 +414,10 @@ def generate_single_mybatis_xml_mapper(schema_name, table_name, is_view=False):
                 xml_mapper_body += '''"{0}", '''.format(column[1])
         column_index += 1
 
-    xml_mapper_body += '''    from "{0}"\r'''.format(table_name)
-
+    if schema_name == "public":
+        xml_mapper_body += '''    from "{0}"\r'''.format(table_name)
+    else:
+        xml_mapper_body += '''    from "{0}"."{1}"\r'''.format(schema_name, table_name)
     xml_mapper_body += "    <where>\r"
 
     column_index = 0
@@ -455,7 +472,10 @@ def generate_single_mybatis_xml_mapper(schema_name, table_name, is_view=False):
                 xml_mapper_body += '''"{0}", '''.format(column[1])
         column_index += 1
 
-    xml_mapper_body += '''    from "{0}"\r'''.format(table_name)
+    if schema_name == "public":
+        xml_mapper_body += '''    from "{0}"\r'''.format(table_name)
+    else:
+        xml_mapper_body += '''    from "{0}"."{1}"\r'''.format(schema_name, table_name)
     xml_mapper_body += "    <where>\r"
 
     column_index = 0
