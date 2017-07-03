@@ -4,8 +4,7 @@ import os
 import postgreSQLDB
 
 generate_path = "d:/generate/"
-generate_tables = "customer"
-
+generate_tables = "sensor_view"
 
 global_interfaces_base_space = "smarthome.service.bases"
 global_model_name_space = "smarthome.service.models"
@@ -564,6 +563,8 @@ def generate_single_interface(schema_name, table_name, is_view=False):
             interface_body += "    Integer update({0} {1});\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"))
             interface_body += "    Integer addOrUpdate({0} {1});\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"))
             interface_body += "    {0} getFirst({1});\r".format(second_word_behind_capitalize(table_name, "_", True), primary_key_parmas_group)
+        else:
+            interface_body += "    {0} getFirst({0} {1});\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"))
         interface_body += "    List<{0}> getList({0} {1});\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"))
         interface_body += "}"
 
@@ -691,6 +692,19 @@ def generate_single_service(schema_name, table_name, is_view=False):
             service_body += "            return {0}Mapper.first({0});\r".format(second_word_behind_capitalize(table_name, "_"))
             service_body += "        }\r"
             service_body += "    }\r"
+
+    else:
+        # get First
+        service_body += "    @Override\r"
+        service_body += "    public {0} getFirst({0} {1}){2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
+        service_body += "        if({0} == null){1}\r".format(second_word_behind_capitalize(table_name, "_"), "{")
+        service_body += "            return null;\r"
+        service_body += "        }\r"
+        service_body += "        else{ \r"
+        service_body += "            return {0}Mapper.first({0});\r".format(
+            second_word_behind_capitalize(table_name, "_"))
+        service_body += "        }\r"
+        service_body += "    }\r"
 
     # get List
     service_body += "    @Override\r"
