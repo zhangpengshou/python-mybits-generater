@@ -4,7 +4,7 @@ import os
 import postgreSQLDB
 
 generate_path = "d:/generate/"
-generate_tables = "sensor_view"
+generate_tables = "gateway_view"
 
 global_interfaces_base_space = "smarthome.service.bases"
 global_model_name_space = "smarthome.service.models"
@@ -251,7 +251,7 @@ def generate_single_mybatis_xml_mapper(schema_name, table_name, is_view=False):
     primary_key_column = get_primary_key_column_from_clumns_list(table_name, all_columns)
     common_key_columns = get_primary_key_column_from_clumns_list(table_name, all_columns, False)
 
-    xml_mapper_header = '''<?xml version="1.0" encoding="UTF-8" ?>\n'''
+    xml_mapper_header = '''<?xml version="1.0" encoding="UTF-8" ?>\r'''
     xml_mapper_header += '''<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >\r'''
     xml_mapper_header += '''<mapper namespace="{0}.{1}Mapper" >\r'''.format(global_java_mapper_name_space, second_word_behind_capitalize(table_name, "_", True))
 
@@ -314,7 +314,7 @@ def generate_single_mybatis_xml_mapper(schema_name, table_name, is_view=False):
     # count by primary key
     xml_mapper_body += '''  <select id="count" resultType="java.lang.Integer" parameterType="{0}.{1}">\r'''.format(global_model_name_space, second_word_behind_capitalize(table_name, "_", True))
 
-    xml_mapper_body += "    select count(*) \r"
+    xml_mapper_body += "    select count(*)\r"
 
     if schema_name == "public":
         xml_mapper_body += '''    from "{0}"\r'''.format(table_name)
@@ -324,11 +324,11 @@ def generate_single_mybatis_xml_mapper(schema_name, table_name, is_view=False):
 
     column_index = 0
     for column in all_columns:
-        xml_mapper_body += '''      <if test="{0} != null"> \r'''.format(second_word_behind_capitalize(column[1], "_"))
+        xml_mapper_body += '''      <if test="{0} != null">\r'''.format(second_word_behind_capitalize(column[1], "_"))
         if column_index == 0:
-            xml_mapper_body += '''        "{0}" = #{1}{2}{3} \r'''.format(column[1], "{", second_word_behind_capitalize(column[1], "_"), "}")
+            xml_mapper_body += '''        "{0}" = #{1}{2}{3}\r'''.format(column[1], "{", second_word_behind_capitalize(column[1], "_"), "}")
         else:
-            xml_mapper_body += '''        and "{0}" = #{1}{2}{3} \r'''.format(column[1], "{", second_word_behind_capitalize(column[1], "_"), "}")
+            xml_mapper_body += '''        and "{0}" = #{1}{2}{3}\r'''.format(column[1], "{", second_word_behind_capitalize(column[1], "_"), "}")
         column_index += 1
 
         xml_mapper_body += "      </if> \r"

@@ -1,4 +1,4 @@
-scriptFile = open("d:\\camera.sql", "r")
+scriptFile = open("d:\\crebas.sql", "r")
 
 text = ""
 drop_sequence= ""
@@ -21,6 +21,8 @@ while True:
         elif line.find("Created on:") > -1:
             pass
         elif line.find("set table ownership") > -1:
+            continue
+        elif line.find("set view ownership") > -1:
             continue
         elif line.find("alter table") > -1 and line.find("owner to") > -1:
             continue
@@ -71,6 +73,6 @@ while True:
 text = drop_view + "\r" + drop_table + "\r" + drop_sequence+ "\r" + create_sequence + "\r" + text.replace("\n\n\n","")
 scriptFile.close()
 
-newScripFile = open("D://camera2.sql", mode="w", encoding="UTF-8")
+newScripFile = open("D://crebas2.sql", mode="w", encoding="UTF-8")
 newScripFile.write(text)
 newScripFile.close()
