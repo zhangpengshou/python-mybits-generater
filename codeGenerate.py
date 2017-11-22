@@ -4,7 +4,7 @@ import os
 import postgreSQLDB
 
 generate_path = "d:/generate/"
-generate_tables = "gateway_view"
+generate_tables = "batch_job"
 
 global_interfaces_base_space = "smarthome.service.bases"
 global_model_name_space = "smarthome.service.models"

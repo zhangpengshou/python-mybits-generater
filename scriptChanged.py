@@ -12,6 +12,8 @@ while True:
     if line:
         if line.find("_id") > -1:
             line = line.replace("INT4", "BIGINT").replace("INT8", "BIGINT").replace("integer", "BIGINT")
+        if line.find("_account") > -1:
+            line = line.replace("INT4", "BIGINT").replace("INT8", "BIGINT").replace("integer", "BIGINT")
         if line.find("INT8") > -1:
             line = line.replace("INT8", "BIGINT")
         if line.find("=========") > -1:
