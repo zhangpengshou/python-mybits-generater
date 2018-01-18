@@ -1,4 +1,4 @@
-scriptFile = open("d:\\crebas.sql", "r")
+scriptFile = open("D:\\DataBase\\Script\\crebas.sql", "r")
 
 text = ""
 drop_sequence= ""
@@ -75,6 +75,6 @@ while True:
 text = drop_view + "\r" + drop_table + "\r" + drop_sequence+ "\r" + create_sequence + "\r" + text.replace("\n\n\n","")
 scriptFile.close()
 
-newScripFile = open("D://crebas2.sql", mode="w", encoding="UTF-8")
+newScripFile = open("D:\\DataBase\\Script\\crebas2.sql", mode="w", encoding="UTF-8")
 newScripFile.write(text)
 newScripFile.close()
