@@ -4,7 +4,7 @@ import os
 import postgreSQLDB
 
 generate_path = "D:\\DataBase\\Code"
-generate_tables = "consume"
+generate_tables = "payment"
 
 global_interfaces_base_space = "smarthome.base.bases"
 global_model_name_space = "smarthome.service.models"
