@@ -3,8 +3,8 @@ __author__ = 'zhangps'
 import os
 import postgreSQLDB
 
-generate_path = "D:\\DataBase\\Code"
-generate_tables = "payment"
+generate_path = "D:/DataBase/Code"
+generate_tables = "appdev_view"
 
 global_interfaces_base_space = "smarthome.base.bases"
 global_model_name_space = "smarthome.service.models"
@@ -14,6 +14,13 @@ global_interfaces_name_space = "smarthome.service.interfaces"
 global_repositorys_name_space = "smarthome.service.repositorys"
 global_controller_name_sapce = "smarthome.api.controllers"
 
+# global_interfaces_base_space = "smarthome.base.bases"
+# global_model_name_space = "smarthome.camera.models"
+# global_xml_mapper_name_space = "smarthome.camera.xmlmapper"
+# global_java_mapper_name_space = "smarthome.camera.mapper1"
+# global_interfaces_name_space = "smarthome.camera.interfaces"
+# global_repositorys_name_space = "smarthome.camera.services"
+# global_controller_name_sapce = "smarthome.camera.controllers"
 
 # 获取当前数据库下所有表
 def get_all_tables():

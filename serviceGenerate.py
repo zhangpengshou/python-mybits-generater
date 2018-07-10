@@ -4,14 +4,23 @@ import os
 import postgreSQLDB
 
 generate_path = "d:/generate/"
-generate_tables = "batch_job"
+generate_schema = "tobacco"
+generate_tables = "containext_view"
+
+# global_interfaces_base_space = "smarthome.service.bases"
+# global_model_name_space = "smarthome.service.models"
+# global_xml_mapper_name_space = "smarthome.service.xmlmapper"
+# global_java_mapper_name_space = "smarthome.service.mappers"
+# global_interfaces_name_space = "smarthome.service.interfaces"
+# global_services_name_space = "smarthome.service.services"
+# global_controller_name_sapce = "smarthome.api.controllers"
 
 global_interfaces_base_space = "smarthome.service.bases"
-global_model_name_space = "smarthome.service.models"
+global_model_name_space = "smarthome.tobacco.models"
 global_xml_mapper_name_space = "smarthome.service.xmlmapper"
-global_java_mapper_name_space = "smarthome.service.mappers"
-global_interfaces_name_space = "smarthome.service.interfaces"
-global_services_name_space = "smarthome.service.services"
+global_java_mapper_name_space = "smarthome.tobacco.mapper1"
+global_interfaces_name_space = "smarthome.tobacco.interfaces"
+global_services_name_space = "smarthome.tobacco.services"
 global_controller_name_sapce = "smarthome.api.controllers"
 
 '''
@@ -874,51 +883,47 @@ for table in get_all_tables():
     schema_name = table[0]
     table_name = table[1]
 
-    if generate_tables.strip() != "" and generate_tables.lower() != str(table_name).lower():
-        continue
+    if schema_name == generate_schema and generate_tables.lower().find(str(table_name).lower()) > -1:
+        # gengreate mode
+        generate_single_model(schema_name, table_name)
 
-    # gengreate mode
-    generate_single_model(schema_name, table_name)
+        # generate xml mapper
+        generate_single_mybatis_xml_mapper(schema_name, table_name)
 
-    # generate xml mapper
-    generate_single_mybatis_xml_mapper(schema_name, table_name)
+        # generate java mapper
+        generate_single_java_mapper(schema_name, table_name)
 
-    # generate java mapper
-    generate_single_java_mapper(schema_name, table_name)
+        # generate interface
+        generate_single_interface(schema_name, table_name)
 
-    # generate interface
-    generate_single_interface(schema_name, table_name)
+        # generate service
+        generate_single_service(schema_name, table_name)
 
-    # generate service
-    generate_single_service(schema_name, table_name)
-
-    # generate controller
-    generate_single_controller(schema_name, table_name)
+        # generate controller
+        generate_single_controller(schema_name, table_name)
 
 
 for table in get_all_views():
     schema_name = table[0]
     table_name = table[1]
 
-    if generate_tables.strip() != "" and generate_tables.find(table_name) < 0:
-        continue
+    if schema_name == generate_schema and generate_tables.lower().find(str(table_name).lower()) > -1:
+        # gengreate mode
+        generate_single_model(schema_name, table_name, True)
 
-    # gengreate mode
-    generate_single_model(schema_name, table_name, True)
+        # generate xml mapper
+        generate_single_mybatis_xml_mapper(schema_name, table_name, True)
 
-    # generate xml mapper
-    generate_single_mybatis_xml_mapper(schema_name, table_name, True)
+        # generate java mapper
+        generate_single_java_mapper(schema_name, table_name, True)
 
-    # generate java mapper
-    generate_single_java_mapper(schema_name, table_name, True)
+        # generate interface
+        generate_single_interface(schema_name, table_name, True)
 
-    # generate interface
-    generate_single_interface(schema_name, table_name, True)
+        # generate service
+        generate_single_service(schema_name, table_name, True)
 
-    # generate service
-    generate_single_service(schema_name, table_name, True)
-
-    # generate controller
-    generate_single_controller(schema_name, table_name, True)
+        # generate controller
+        generate_single_controller(schema_name, table_name, True)
 
 
