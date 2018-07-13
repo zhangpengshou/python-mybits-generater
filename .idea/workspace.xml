@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0a509b71-2ae4-4cdc-a516-51aac3c481b6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgreSQLDB.py" beforeDir="false" afterPath="$PROJECT_DIR$/postgreSQLDB.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositoryGenerate.py" beforeDir="false" afterPath="$PROJECT_DIR$/repositoryGenerate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scriptChanged.py" beforeDir="false" afterPath="$PROJECT_DIR$/scriptChanged.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/serviceGenerate.py" beforeDir="false" afterPath="$PROJECT_DIR$/serviceGenerate.py" afterDir="false" />
     </list>
     <ignored path="MybatisGenerater.iws" />
@@ -19,12 +16,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/MybatisGenerater$Service.coverage" NAME="Service Coverage Results" MODIFIED="1531202970167" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MybatisGenerater$Service.coverage" NAME="Service Coverage Results" MODIFIED="1531457017726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MybatisGenerater$Unnamed.coverage" NAME="Python3.5 Coverage Results" MODIFIED="1463961322944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MybatisGenerater$Code.coverage" NAME="Code Coverage Results" MODIFIED="1511336484568" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MybatisGenerater$Python3_5.coverage" NAME="Python3.5 Coverage Results" MODIFIED="1464181151767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MybatisGenerater$Repository.coverage" NAME="Repository Coverage Results" MODIFIED="1523413344776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MybatisGenerater$Script.coverage" NAME="Script Coverage Results" MODIFIED="1530859206750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MybatisGenerater$Script.coverage" NAME="Script Coverage Results" MODIFIED="1531454773381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -37,22 +34,10 @@
       <file leaf-file-name="serviceGenerate.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/serviceGenerate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="914" column="73" lean-forward="true" selection-start-line="914" selection-start-column="73" selection-end-line="914" selection-end-column="73" />
+            <state relative-caret-position="279">
+              <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
               <folding>
                 <element signature="e#24#33#0" expanded="true" />
-                <element signature="e#2037#2354#0" />
-                <element signature="e#2424#3200#0" />
-                <element signature="e#3293#5194#0" />
-                <element signature="e#5309#5980#0" />
-                <element signature="e#6077#9527#0" />
-                <element signature="e#9650#22809#0" />
-                <element signature="e#22917#25006#0" />
-                <element signature="e#25113#28126#0" />
-                <element signature="e#28229#37728#0" />
-                <element signature="e#30833#35958#0" />
-                <element signature="e#37837#46434#0" />
-                <element signature="e#46553#47039#0" />
               </folding>
             </state>
           </provider>
@@ -78,7 +63,11 @@
       <find>service</find>
       <find>%</find>
       <find>mappers</find>
+      <find>ApiResponse</find>
     </findStrings>
+    <replaceStrings>
+      <replace>Response</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
@@ -116,6 +105,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -127,7 +117,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -558,7 +547,14 @@
       <option name="project" value="LOCAL" />
       <updated>1516268071474</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="1、修改视图名相同，schema名不同时生成错误问题；">
+      <created>1531203468826</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1531203468826</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -568,24 +564,24 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32897604" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32824427" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1716418" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1748401" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.3991276" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991276" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,7 +615,8 @@
     <MESSAGE value="1、累积行修改；" />
     <MESSAGE value="1、修改为Repository前；" />
     <MESSAGE value="1、修改为Repository；&#10;2、增加BigDecimal类型；" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修改为Repository；&#10;2、增加BigDecimal类型；" />
+    <MESSAGE value="1、修改视图名相同，schema名不同时生成错误问题；" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、修改视图名相同，schema名不同时生成错误问题；" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -675,22 +672,30 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/serviceGenerate.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="26" column="51" lean-forward="true" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
+          <folding>
+            <element signature="e#24#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serviceGenerate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17613">
+          <caret line="927" lean-forward="true" selection-start-line="927" selection-end-line="927" />
+          <folding>
+            <element signature="e#24#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serviceGenerate.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="22" column="58" lean-forward="true" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
           <folding>
             <element signature="e#24#33#0" expanded="true" />
-            <element signature="e#2037#2354#0" />
-            <element signature="e#2424#3200#0" />
-            <element signature="e#3293#5194#0" />
-            <element signature="e#5309#5980#0" />
-            <element signature="e#6077#9527#0" />
-            <element signature="e#9650#22809#0" />
-            <element signature="e#22917#25006#0" />
-            <element signature="e#25113#28126#0" />
-            <element signature="e#28229#37728#0" />
-            <element signature="e#30833#35958#0" />
-            <element signature="e#37837#46434#0" />
-            <element signature="e#46553#47039#0" />
           </folding>
         </state>
       </provider>
@@ -701,18 +706,6 @@
           <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
           <folding>
             <element signature="e#24#33#0" expanded="true" />
-            <element signature="e#2037#2354#0" />
-            <element signature="e#2424#3200#0" />
-            <element signature="e#3293#5194#0" />
-            <element signature="e#5309#5980#0" />
-            <element signature="e#6077#9527#0" />
-            <element signature="e#9650#22809#0" />
-            <element signature="e#22917#25006#0" />
-            <element signature="e#25113#28126#0" />
-            <element signature="e#28229#37728#0" />
-            <element signature="e#30833#35958#0" />
-            <element signature="e#37837#46434#0" />
-            <element signature="e#46553#47039#0" />
           </folding>
         </state>
       </provider>
@@ -723,18 +716,6 @@
           <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
           <folding>
             <element signature="e#24#33#0" expanded="true" />
-            <element signature="e#2037#2354#0" />
-            <element signature="e#2424#3200#0" />
-            <element signature="e#3293#5194#0" />
-            <element signature="e#5309#5980#0" />
-            <element signature="e#6077#9527#0" />
-            <element signature="e#9650#22809#0" />
-            <element signature="e#22917#25006#0" />
-            <element signature="e#25113#28126#0" />
-            <element signature="e#28229#37728#0" />
-            <element signature="e#30833#35958#0" />
-            <element signature="e#37837#46434#0" />
-            <element signature="e#46553#47039#0" />
           </folding>
         </state>
       </provider>
@@ -752,18 +733,6 @@
           <caret line="9" column="52" lean-forward="true" selection-start-line="9" selection-start-column="52" selection-end-line="9" selection-end-column="52" />
           <folding>
             <element signature="e#24#33#0" expanded="true" />
-            <element signature="e#2037#2354#0" />
-            <element signature="e#2424#3200#0" />
-            <element signature="e#3293#5194#0" />
-            <element signature="e#5309#5980#0" />
-            <element signature="e#6077#9527#0" />
-            <element signature="e#9650#22809#0" />
-            <element signature="e#22917#25006#0" />
-            <element signature="e#25113#28126#0" />
-            <element signature="e#28229#37728#0" />
-            <element signature="e#30833#35958#0" />
-            <element signature="e#37837#46434#0" />
-            <element signature="e#46553#47039#0" />
           </folding>
         </state>
       </provider>
@@ -781,18 +750,6 @@
           <caret line="901" lean-forward="true" selection-start-line="901" selection-end-line="901" />
           <folding>
             <element signature="e#24#33#0" expanded="true" />
-            <element signature="e#2037#2354#0" />
-            <element signature="e#2424#3200#0" />
-            <element signature="e#3293#5194#0" />
-            <element signature="e#5309#5980#0" />
-            <element signature="e#6077#9527#0" />
-            <element signature="e#9650#22809#0" />
-            <element signature="e#22917#25006#0" />
-            <element signature="e#25113#28126#0" />
-            <element signature="e#28229#37728#0" />
-            <element signature="e#30833#35958#0" />
-            <element signature="e#37837#46434#0" />
-            <element signature="e#46553#47039#0" />
           </folding>
         </state>
       </provider>
@@ -810,18 +767,6 @@
           <caret line="919" lean-forward="true" selection-start-line="919" selection-end-line="919" />
           <folding>
             <element signature="e#24#33#0" expanded="true" />
-            <element signature="e#2037#2354#0" />
-            <element signature="e#2424#3200#0" />
-            <element signature="e#3293#5194#0" />
-            <element signature="e#5309#5980#0" />
-            <element signature="e#6077#9527#0" />
-            <element signature="e#9650#22809#0" />
-            <element signature="e#22917#25006#0" />
-            <element signature="e#25113#28126#0" />
-            <element signature="e#28229#37728#0" />
-            <element signature="e#30833#35958#0" />
-            <element signature="e#37837#46434#0" />
-            <element signature="e#46553#47039#0" />
           </folding>
         </state>
       </provider>
@@ -839,18 +784,6 @@
           <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
           <folding>
             <element signature="e#24#33#0" expanded="true" />
-            <element signature="e#2037#2354#0" />
-            <element signature="e#2424#3200#0" />
-            <element signature="e#3293#5194#0" />
-            <element signature="e#5309#5980#0" />
-            <element signature="e#6077#9527#0" />
-            <element signature="e#9650#22809#0" />
-            <element signature="e#22917#25006#0" />
-            <element signature="e#25113#28126#0" />
-            <element signature="e#28229#37728#0" />
-            <element signature="e#30833#35958#0" />
-            <element signature="e#37837#46434#0" />
-            <element signature="e#46553#47039#0" />
           </folding>
         </state>
       </provider>
@@ -1083,22 +1016,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/serviceGenerate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="914" column="73" lean-forward="true" selection-start-line="914" selection-start-column="73" selection-end-line="914" selection-end-column="73" />
+        <state relative-caret-position="279">
+          <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
           <folding>
             <element signature="e#24#33#0" expanded="true" />
-            <element signature="e#2037#2354#0" />
-            <element signature="e#2424#3200#0" />
-            <element signature="e#3293#5194#0" />
-            <element signature="e#5309#5980#0" />
-            <element signature="e#6077#9527#0" />
-            <element signature="e#9650#22809#0" />
-            <element signature="e#22917#25006#0" />
-            <element signature="e#25113#28126#0" />
-            <element signature="e#28229#37728#0" />
-            <element signature="e#30833#35958#0" />
-            <element signature="e#37837#46434#0" />
-            <element signature="e#46553#47039#0" />
           </folding>
         </state>
       </provider>

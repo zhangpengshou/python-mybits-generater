@@ -5,7 +5,7 @@ import postgreSQLDB
 
 generate_path = "d:/generate/"
 generate_schema = "tobacco"
-generate_tables = "containext_view"
+generate_tables = "video"
 
 # global_interfaces_base_space = "smarthome.service.bases"
 # global_model_name_space = "smarthome.service.models"
@@ -15,7 +15,7 @@ generate_tables = "containext_view"
 # global_services_name_space = "smarthome.service.services"
 # global_controller_name_sapce = "smarthome.api.controllers"
 
-global_interfaces_base_space = "smarthome.service.bases"
+global_interfaces_base_space = "smarthome.base.bases"
 global_model_name_space = "smarthome.tobacco.models"
 global_xml_mapper_name_space = "smarthome.service.xmlmapper"
 global_java_mapper_name_space = "smarthome.tobacco.mapper1"
@@ -745,13 +745,12 @@ def generate_single_controller(schema_name, table_name, is_view=False):
     controller_header += "package {0};\r".format(global_controller_name_sapce)
     controller_header += "\rimport java.util.List;\r"
     controller_header += "import javax.annotation.Resource;\r"
-    controller_header += "import javax.servlet.http.HttpServletRequest;\r"
     controller_header += "import org.springframework.web.bind.annotation.*;\r"
     controller_header += "import org.springframework.web.servlet.config.annotation.EnableWebMvc;\r"
 
-    controller_header += "import {0}.ApiCode;\r".format(global_interfaces_base_space)
+    controller_header += "import {0}.Code;\r".format(global_interfaces_base_space)
     controller_header += "import {0}.ApiVersion;\r".format(global_interfaces_base_space)
-    controller_header += "import {0}.ApiResponse;\r".format(global_interfaces_base_space)
+    controller_header += "import {0}.Response;\r".format(global_interfaces_base_space)
     controller_header += "import {0}.{1};\r".format(global_model_name_space, second_word_behind_capitalize(table_name, "_", True))
     controller_header += "import {0}.I{1}Service;\r".format(global_interfaces_name_space, second_word_behind_capitalize(table_name, "_", True))
 
@@ -769,8 +768,8 @@ def generate_single_controller(schema_name, table_name, is_view=False):
         controller_body += "     */\r"
         controller_body += '''    @ApiVersion("1.0,latest")\r'''
         controller_body += '''    @RequestMapping(value = "/{0}", method = RequestMethod.POST)\r'''.format(second_word_behind_capitalize(table_name, "_"))
-        controller_body += "    public ApiResponse add({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
-        controller_body += "        ApiResponse rspResult = new ApiResponse();\r"
+        controller_body += "    public Response add({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
+        controller_body += "        Response rspResult = new Response();\r"
         controller_body += "        if({0}Service.count({0}) == 0){1}\r".format(second_word_behind_capitalize(table_name, "_"), "{")
 
         # get primary key
@@ -788,11 +787,11 @@ def generate_single_controller(schema_name, table_name, is_view=False):
         controller_body += "                rspResult.setData({0});\r".format(second_word_behind_capitalize(table_name, "_"))
         controller_body += "            }\r"
         controller_body += "            else{\r"
-        controller_body += '''              rspResult.setCode(ApiCode.INSERT_ERROR);\r'''
+        controller_body += '''              rspResult.setCode(Code.INSERT_ERROR);\r'''
         controller_body += "            }\r"
         controller_body += "        }\r"
         controller_body += "        else{\r"
-        controller_body += '''            rspResult.setCode(ApiCode.ALREADY_EXISTS);\r'''
+        controller_body += '''            rspResult.setCode(Code.ALREADY_EXISTS);\r'''
         controller_body += "        }\r"
         controller_body += "        return rspResult;\r"
         controller_body += "    }\r"
@@ -804,18 +803,18 @@ def generate_single_controller(schema_name, table_name, is_view=False):
         controller_body += "     */\r"
         controller_body += '''    @ApiVersion("1.0,latest")\r'''
         controller_body += '''    @RequestMapping(value = "/{0}", method = RequestMethod.DELETE)\r'''.format(second_word_behind_capitalize(table_name, "_"))
-        controller_body += "    public ApiResponse delete({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
-        controller_body += "        ApiResponse rspResult = new ApiResponse();\r"
+        controller_body += "    public Response delete({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
+        controller_body += "        Response rspResult = new Response();\r"
         controller_body += "        if({0}Service.count({0}) > 0){1}\r".format(second_word_behind_capitalize(table_name, "_"), "{")
         controller_body += "            if({0}Service.delete({0}) > 0){1}\r".format(second_word_behind_capitalize(table_name, "_"), "{")
         controller_body += "                rspResult.setData({0});\r".format(second_word_behind_capitalize(table_name, "_"))
         controller_body += "            }\r"
         controller_body += "            else{\r"
-        controller_body += '''              rspResult.setCode(ApiCode.DELETE_ERROR);\r'''
+        controller_body += '''              rspResult.setCode(Code.DELETE_ERROR);\r'''
         controller_body += "            }\r"
         controller_body += "        }\r"
         controller_body += "        else{\r"
-        controller_body += '''            rspResult.setCode(ApiCode.NOT_EXISTS);\r'''
+        controller_body += '''            rspResult.setCode(Code.NOT_EXISTS);\r'''
         controller_body += "        }\r"
         controller_body += "        return rspResult;\r"
         controller_body += "    }\r"
@@ -827,13 +826,13 @@ def generate_single_controller(schema_name, table_name, is_view=False):
         controller_body += "     */\r"
         controller_body += '''    @ApiVersion("1.0,latest")\r'''
         controller_body += '''    @RequestMapping(value = "/{0}", method = RequestMethod.PUT)\r'''.format(second_word_behind_capitalize(table_name, "_"))
-        controller_body += "    public ApiResponse update({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
-        controller_body += "        ApiResponse rspResult = new ApiResponse();\r"
+        controller_body += "    public Response update({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
+        controller_body += "        Response rspResult = new Response();\r"
         controller_body += "        if({0}Service.update({0}) > 0){1}\r".format(second_word_behind_capitalize(table_name, "_"), "{")
         controller_body += "            rspResult.setData({0});\r".format(second_word_behind_capitalize(table_name, "_"))
         controller_body += "        }\r"
         controller_body += "        else{\r"
-        controller_body += '''          rspResult.setCode(ApiCode.UPDATE_ERROR);\r'''
+        controller_body += '''          rspResult.setCode(Code.UPDATE_ERROR);\r'''
         controller_body += "        }\r"
         controller_body += "        return rspResult;\r"
         controller_body += "    }\r"
@@ -844,14 +843,14 @@ def generate_single_controller(schema_name, table_name, is_view=False):
     controller_body += "     */\r"
     controller_body += '''    @ApiVersion("1.0,latest")\r'''
     controller_body += '''    @RequestMapping(value = "/{0}", method = RequestMethod.GET)\r'''.format(second_word_behind_capitalize(table_name, "_"))
-    controller_body += "    public ApiResponse list({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
-    controller_body += "        ApiResponse rspResult = new ApiResponse();\r"
+    controller_body += "    public Response list({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
+    controller_body += "        Response rspResult = new Response();\r"
     controller_body += "        List<{0}> {1}List = {1}Service.getList({1});\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"))
     controller_body += "        if({0}List.size() > 0){1}\r".format(second_word_behind_capitalize(table_name, "_"), "{")
     controller_body += "            rspResult.setData({0}List);\r".format(second_word_behind_capitalize(table_name, "_"))
     controller_body += "        }\r"
     controller_body += "        else{\r"
-    controller_body += '''            rspResult.setCode(ApiCode.EMPTY_LIST);\r'''
+    controller_body += '''            rspResult.setCode(Code.EMPTY_LIST);\r'''
     controller_body += "        }\r"
     controller_body += "        return rspResult;\r"
     controller_body += "    }\r\r"
