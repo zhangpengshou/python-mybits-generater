@@ -3,8 +3,9 @@ __author__ = 'zhangps'
 import os
 import postgreSQLDB
 
-generate_path = "D:/DataBase/Code"
-generate_tables = "appdev_view"
+generate_path = "d:/generate/"
+generate_schema = ""
+generate_tables = "white_view"
 
 global_interfaces_base_space = "smarthome.base.bases"
 global_model_name_space = "smarthome.service.models"
@@ -879,51 +880,46 @@ for table in get_all_tables():
     schema_name = table[0]
     table_name = table[1]
 
-    if generate_tables.strip() != "" and generate_tables.lower() != str(table_name).lower():
-        continue
+    if (generate_schema == '' or schema_name == generate_schema) and generate_tables.lower().find(str(table_name).lower()) > -1:
+        # gengreate mode
+        generate_single_model(schema_name, table_name)
 
-    # gengreate mode
-    generate_single_model(schema_name, table_name)
+        # generate xml mapper
+        generate_single_mybatis_xml_mapper(schema_name, table_name)
 
-    # generate xml mapper
-    generate_single_mybatis_xml_mapper(schema_name, table_name)
+        # generate java mapper
+        generate_single_java_mapper(schema_name, table_name)
 
-    # generate java mapper
-    generate_single_java_mapper(schema_name, table_name)
+        # generate interface
+        generate_single_interface(schema_name, table_name)
 
-    # generate interface
-    generate_single_interface(schema_name, table_name)
+        # generate repository
+        generate_single_repository(schema_name, table_name)
 
-    # generate repository
-    generate_single_repository(schema_name, table_name)
-
-    # generate controller
-    generate_single_controller(schema_name, table_name)
-
+        # generate controller
+        generate_single_controller(schema_name, table_name)
 
 for table in get_all_views():
     schema_name = table[0]
     table_name = table[1]
 
-    if generate_tables.strip() != "" and generate_tables.find(table_name) < 0:
-        continue
+    if (generate_schema == '' or schema_name == generate_schema) and generate_tables.lower().find(str(table_name).lower()) > -1:
+        # gengreate mode
+        generate_single_model(schema_name, table_name, True)
 
-    # gengreate mode
-    generate_single_model(schema_name, table_name, True)
+        # generate xml mapper
+        generate_single_mybatis_xml_mapper(schema_name, table_name, True)
 
-    # generate xml mapper
-    generate_single_mybatis_xml_mapper(schema_name, table_name, True)
+        # generate java mapper
+        generate_single_java_mapper(schema_name, table_name, True)
 
-    # generate java mapper
-    generate_single_java_mapper(schema_name, table_name, True)
+        # generate interface
+        generate_single_interface(schema_name, table_name, True)
 
-    # generate interface
-    generate_single_interface(schema_name, table_name, True)
+        # generate repository
+        generate_single_repository(schema_name, table_name, True)
 
-    # generate repository
-    generate_single_repository(schema_name, table_name, True)
-
-    # generate controller
-    generate_single_controller(schema_name, table_name, True)
+        # generate controller
+        generate_single_controller(schema_name, table_name, True)
 
 

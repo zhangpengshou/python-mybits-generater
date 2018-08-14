@@ -4,24 +4,24 @@ import os
 import postgreSQLDB
 
 generate_path = "d:/generate/"
-generate_schema = "tobacco"
-generate_tables = "video"
+generate_schema = ""
+generate_tables = "white_view"
 
-# global_interfaces_base_space = "smarthome.service.bases"
-# global_model_name_space = "smarthome.service.models"
-# global_xml_mapper_name_space = "smarthome.service.xmlmapper"
-# global_java_mapper_name_space = "smarthome.service.mappers"
-# global_interfaces_name_space = "smarthome.service.interfaces"
-# global_services_name_space = "smarthome.service.services"
-# global_controller_name_sapce = "smarthome.api.controllers"
-
-global_interfaces_base_space = "smarthome.base.bases"
-global_model_name_space = "smarthome.tobacco.models"
+global_interfaces_base_space = "smarthome.service.bases"
+global_model_name_space = "smarthome.service.models"
 global_xml_mapper_name_space = "smarthome.service.xmlmapper"
-global_java_mapper_name_space = "smarthome.tobacco.mapper1"
-global_interfaces_name_space = "smarthome.tobacco.interfaces"
-global_services_name_space = "smarthome.tobacco.services"
+global_java_mapper_name_space = "smarthome.service.mappers"
+global_interfaces_name_space = "smarthome.service.interfaces"
+global_services_name_space = "smarthome.service.services"
 global_controller_name_sapce = "smarthome.api.controllers"
+
+# global_interfaces_base_space = "smarthome.base.bases"
+# global_model_name_space = "smarthome.tobacco.models"
+# global_xml_mapper_name_space = "smarthome.service.xmlmapper"
+# global_java_mapper_name_space = "smarthome.tobacco.mapper1"
+# global_interfaces_name_space = "smarthome.tobacco.interfaces"
+# global_services_name_space = "smarthome.tobacco.services"
+# global_controller_name_sapce = "smarthome.api.controllers"
 
 '''
 global_interfaces_base_space = "lite.iot.api.bases"
@@ -882,7 +882,7 @@ for table in get_all_tables():
     schema_name = table[0]
     table_name = table[1]
 
-    if schema_name == generate_schema and generate_tables.lower().find(str(table_name).lower()) > -1:
+    if (generate_schema == '' or schema_name == generate_schema) and generate_tables.lower().find(str(table_name).lower()) > -1:
         # gengreate mode
         generate_single_model(schema_name, table_name)
 
@@ -906,7 +906,7 @@ for table in get_all_views():
     schema_name = table[0]
     table_name = table[1]
 
-    if schema_name == generate_schema and generate_tables.lower().find(str(table_name).lower()) > -1:
+    if (generate_schema == '' or schema_name == generate_schema) and generate_tables.lower().find(str(table_name).lower()) > -1:
         # gengreate mode
         generate_single_model(schema_name, table_name, True)
 

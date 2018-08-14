@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0a509b71-2ae4-4cdc-a516-51aac3c481b6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositoryGenerate.py" beforeDir="false" afterPath="$PROJECT_DIR$/repositoryGenerate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scriptChanged.py" beforeDir="false" afterPath="$PROJECT_DIR$/scriptChanged.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/serviceGenerate.py" beforeDir="false" afterPath="$PROJECT_DIR$/serviceGenerate.py" afterDir="false" />
     </list>
     <ignored path="MybatisGenerater.iws" />
@@ -16,12 +18,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/MybatisGenerater$Service.coverage" NAME="Service Coverage Results" MODIFIED="1531457017726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MybatisGenerater$Service.coverage" NAME="Service Coverage Results" MODIFIED="1531727287360" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MybatisGenerater$Unnamed.coverage" NAME="Python3.5 Coverage Results" MODIFIED="1463961322944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MybatisGenerater$Code.coverage" NAME="Code Coverage Results" MODIFIED="1511336484568" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MybatisGenerater$Python3_5.coverage" NAME="Python3.5 Coverage Results" MODIFIED="1464181151767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MybatisGenerater$Repository.coverage" NAME="Repository Coverage Results" MODIFIED="1523413344776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MybatisGenerater$Script.coverage" NAME="Script Coverage Results" MODIFIED="1531454773381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MybatisGenerater$Repository.coverage" NAME="Repository Coverage Results" MODIFIED="1534235927030" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MybatisGenerater$Script.coverage" NAME="Script Coverage Results" MODIFIED="1534235794255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -31,14 +33,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="serviceGenerate.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="serviceGenerate.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/serviceGenerate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+            <state relative-caret-position="17233">
+              <caret line="908" column="128" selection-start-line="908" selection-start-column="4" selection-end-line="908" selection-end-column="128" />
               <folding>
                 <element signature="e#24#33#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="repositoryGenerate.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/repositoryGenerate.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="14" column="63" lean-forward="true" selection-start-line="14" selection-start-column="63" selection-end-line="14" selection-end-column="63" />
+              <folding>
+                <element signature="e#24#33#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scriptChanged.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scriptChanged.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="7" column="12" lean-forward="true" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+              <folding>
+                <element signature="e#178#3559#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="postgreSQLDB.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/postgreSQLDB.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -64,9 +99,12 @@
       <find>%</find>
       <find>mappers</find>
       <find>ApiResponse</find>
+      <find>ApiCode</find>
+      <find>generate_schema</find>
     </findStrings>
     <replaceStrings>
       <replace>Response</replace>
+      <replace>Code</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -78,10 +116,10 @@
       <list>
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/codeGenerate.py" />
-        <option value="$PROJECT_DIR$/repositoryGenerate.py" />
         <option value="$PROJECT_DIR$/postgreSQLDB.py" />
-        <option value="$PROJECT_DIR$/scriptChanged.py" />
         <option value="$PROJECT_DIR$/serviceGenerate.py" />
+        <option value="$PROJECT_DIR$/scriptChanged.py" />
+        <option value="$PROJECT_DIR$/repositoryGenerate.py" />
       </list>
     </option>
   </component>
@@ -92,8 +130,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1735" />
-    <option name="y" value="204" />
+    <option name="x" value="1441" />
+    <option name="y" value="197" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
@@ -144,7 +182,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Service">
+  <component name="RunManager" selected="Python.Repository">
     <configuration name="Repository" type="PythonConfigurationType" factoryName="Python">
       <module name="MybatisGenerater" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -554,24 +592,30 @@
       <option name="project" value="LOCAL" />
       <updated>1531203468826</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="1、修复controller生成过时的类问题；">
+      <created>1531457118244</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1531457118244</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1358" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32897604" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3278867" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32824427" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24209379" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1748401" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14765458" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -582,6 +626,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -616,7 +661,8 @@
     <MESSAGE value="1、修改为Repository前；" />
     <MESSAGE value="1、修改为Repository；&#10;2、增加BigDecimal类型；" />
     <MESSAGE value="1、修改视图名相同，schema名不同时生成错误问题；" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修改视图名相同，schema名不同时生成错误问题；" />
+    <MESSAGE value="1、修复controller生成过时的类问题；" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、修复controller生成过时的类问题；" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -627,7 +673,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="90" />
+      <option name="time" value="91" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -670,6 +716,36 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/repositoryGenerate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#24#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serviceGenerate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" column="59" lean-forward="true" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
+          <folding>
+            <element signature="e#24#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serviceGenerate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14174">
+          <caret line="746" column="62" selection-start-line="746" selection-start-column="62" selection-end-line="746" selection-end-column="62" />
+          <folding>
+            <element signature="e#24#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/serviceGenerate.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
@@ -993,31 +1069,37 @@
       </provider>
     </entry>
     <entry file="file://D:/Program Files/Python3.5/Lib/site-packages/psycopg2/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/repositoryGenerate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="53" column="39" selection-start-line="53" selection-start-column="39" selection-end-line="53" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/postgreSQLDB.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scriptChanged.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="73" column="13" lean-forward="true" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
+        <state relative-caret-position="380">
+          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/serviceGenerate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+        <state relative-caret-position="17233">
+          <caret line="908" column="128" selection-start-line="908" selection-start-column="4" selection-end-line="908" selection-end-column="128" />
+          <folding>
+            <element signature="e#24#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scriptChanged.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="12" lean-forward="true" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+          <folding>
+            <element signature="e#178#3559#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/repositoryGenerate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="63" lean-forward="true" selection-start-line="14" selection-start-column="63" selection-end-line="14" selection-end-column="63" />
           <folding>
             <element signature="e#24#33#0" expanded="true" />
           </folding>
