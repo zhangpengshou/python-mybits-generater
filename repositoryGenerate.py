@@ -3,25 +3,26 @@ __author__ = 'zhangps'
 import os
 import postgreSQLDB
 
-generate_path = "d:/generate/"
-generate_schema = ""
-generate_tables = "white_view"
+generate_path = "d:/DataBase/code/"
+generate_schema = "devops"
+generate_tables = "appointment"
 
-global_interfaces_base_space = "smarthome.base.bases"
-global_model_name_space = "smarthome.service.models"
-global_xml_mapper_name_space = "smarthome.service.xmlmapper"
-global_java_mapper_name_space = "smarthome.service.mapper1"
-global_interfaces_name_space = "smarthome.service.interfaces"
-global_repositorys_name_space = "smarthome.service.repositorys"
-global_controller_name_sapce = "smarthome.api.controllers"
+# global_interfaces_base_space = "smart.base.bases"
+# global_model_name_space = "smart.repository.models"
+# global_xml_mapper_name_space = "smart.repository.xmlmapper"
+# global_java_mapper_name_space = "smart.repository.mapper"
+# global_interfaces_name_space = "smart.repository.interfaces"
+# global_repositorys_name_space = "smart.repository.repositorys"
+# global_controller_name_sapce = "smart.api.controllers"
 
-# global_interfaces_base_space = "smarthome.base.bases"
-# global_model_name_space = "smarthome.camera.models"
-# global_xml_mapper_name_space = "smarthome.camera.xmlmapper"
-# global_java_mapper_name_space = "smarthome.camera.mapper1"
-# global_interfaces_name_space = "smarthome.camera.interfaces"
-# global_repositorys_name_space = "smarthome.camera.services"
-# global_controller_name_sapce = "smarthome.camera.controllers"
+global_interfaces_base_space = "smart.base.bases"
+global_model_name_space = "smart.devops.models"
+global_xml_mapper_name_space = "smart.devops.xmlmapper"
+global_java_mapper_name_space = "smart.devops.mapper"
+global_interfaces_name_space = "smart.devops.interfaces"
+global_repositorys_name_space = "smart.devops.repositorys"
+global_controller_name_sapce = "smart.api.controllers"
+
 
 # 获取当前数据库下所有表
 def get_all_tables():
@@ -33,7 +34,6 @@ def get_all_tables():
     postgreSQLDB.close_connection(conn)
     return table_list
 
-
 # 获取当前数据库下所有视图
 def get_all_views():
     conn = postgreSQLDB.get_connection()
@@ -43,7 +43,6 @@ def get_all_views():
     postgreSQLDB.close_cursor(cursor)
     postgreSQLDB.close_connection(conn)
     return table_list
-
 
 # 获取Schema和数据库下所有列
 def get_all_columns(schema, dbname):
@@ -264,7 +263,7 @@ def generate_single_mybatis_xml_mapper(schema_name, table_name, is_view=False):
 
     # result map
     xml_mapper_body += '''  <resultMap id="{0}Map" type="{1}.{0}" >\r'''.format(second_word_behind_capitalize(table_name, "_", True), global_model_name_space)
-    xml_mapper_body += "    <constructor >\r"
+    xml_mapper_body += "    <constructor>\r"
 
     if is_view == False:
         for column in primary_key_column:
@@ -748,7 +747,7 @@ def generate_single_controller(schema_name, table_name, is_view=False):
 
     controller_header += "import {0}.Code;\r".format(global_interfaces_base_space)
     controller_header += "import {0}.ApiVersion;\r".format(global_interfaces_base_space)
-    controller_header += "import {0}.ApiResponse;\r".format(global_interfaces_base_space)
+    controller_header += "import {0}.Response;\r".format(global_interfaces_base_space)
     controller_header += "import {0}.{1};\r".format(global_model_name_space, second_word_behind_capitalize(table_name, "_", True))
     controller_header += "import {0}.I{1}Repository;\r".format(global_interfaces_name_space, second_word_behind_capitalize(table_name, "_", True))
 
@@ -766,8 +765,8 @@ def generate_single_controller(schema_name, table_name, is_view=False):
         controller_body += "     */\r"
         controller_body += '''    @ApiVersion("1.0,latest")\r'''
         controller_body += '''    @RequestMapping(value = "/{0}", method = RequestMethod.POST)\r'''.format(second_word_behind_capitalize(table_name, "_"))
-        controller_body += "    public ApiResponse add({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
-        controller_body += "        ApiResponse rspResult = new ApiResponse();\r"
+        controller_body += "    public Response add({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
+        controller_body += "        Response rspResult = new Response();\r"
         controller_body += "        if({0}Repository.count({0}) == 0){1}\r".format(second_word_behind_capitalize(table_name, "_"), "{")
 
         # get primary key
@@ -801,8 +800,8 @@ def generate_single_controller(schema_name, table_name, is_view=False):
         controller_body += "     */\r"
         controller_body += '''    @ApiVersion("1.0,latest")\r'''
         controller_body += '''    @RequestMapping(value = "/{0}", method = RequestMethod.DELETE)\r'''.format(second_word_behind_capitalize(table_name, "_"))
-        controller_body += "    public ApiResponse delete({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
-        controller_body += "        ApiResponse rspResult = new ApiResponse();\r"
+        controller_body += "    public Response delete({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
+        controller_body += "        Response rspResult = new Response();\r"
         controller_body += "        if({0}Repository.count({0}) > 0){1}\r".format(second_word_behind_capitalize(table_name, "_"), "{")
         controller_body += "            if({0}Repository.delete({0}) > 0){1}\r".format(second_word_behind_capitalize(table_name, "_"), "{")
         controller_body += "                rspResult.setData({0});\r".format(second_word_behind_capitalize(table_name, "_"))
@@ -824,8 +823,8 @@ def generate_single_controller(schema_name, table_name, is_view=False):
         controller_body += "     */\r"
         controller_body += '''    @ApiVersion("1.0,latest")\r'''
         controller_body += '''    @RequestMapping(value = "/{0}", method = RequestMethod.PUT)\r'''.format(second_word_behind_capitalize(table_name, "_"))
-        controller_body += "    public ApiResponse update({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
-        controller_body += "        ApiResponse rspResult = new ApiResponse();\r"
+        controller_body += "    public Response update({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
+        controller_body += "        Response rspResult = new Response();\r"
         controller_body += "        if({0}Repository.update({0}) > 0){1}\r".format(second_word_behind_capitalize(table_name, "_"), "{")
         controller_body += "            rspResult.setData({0});\r".format(second_word_behind_capitalize(table_name, "_"))
         controller_body += "        }\r"
@@ -841,8 +840,8 @@ def generate_single_controller(schema_name, table_name, is_view=False):
     controller_body += "     */\r"
     controller_body += '''    @ApiVersion("1.0,latest")\r'''
     controller_body += '''    @RequestMapping(value = "/{0}", method = RequestMethod.GET)\r'''.format(second_word_behind_capitalize(table_name, "_"))
-    controller_body += "    public ApiResponse list({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
-    controller_body += "        ApiResponse rspResult = new ApiResponse();\r"
+    controller_body += "    public Response list({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
+    controller_body += "        Response rspResult = new Response();\r"
     controller_body += "        List<{0}> {1}List = {1}Repository.getList({1});\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"))
     controller_body += "        if({0}List.size() > 0){1}\r".format(second_word_behind_capitalize(table_name, "_"), "{")
     controller_body += "            rspResult.setData({0}List);\r".format(second_word_behind_capitalize(table_name, "_"))

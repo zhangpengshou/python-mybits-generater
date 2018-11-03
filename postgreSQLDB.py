@@ -11,7 +11,7 @@ global_sql_get_table_primary_key = "select pg_attribute.attname as colname from 
 
 def get_connection():
     #return psycopg2.connect(host="1k59721k19.imwork.net", port="32525", database="liteiot", user="zhangps", password="123456")
-    return psycopg2.connect(host="111.206.6.14", port="5432", database="smarthome2", user="test", password="test@1234")
+    return psycopg2.connect(host="172.18.160.173", port="28318", database="foundersmart", user="foundersmart", password="smart4Founder")
 
 
 def get_cursor(conn):

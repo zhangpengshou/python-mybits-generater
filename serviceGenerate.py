@@ -5,7 +5,7 @@ import postgreSQLDB
 
 generate_path = "d:/generate/"
 generate_schema = ""
-generate_tables = "white_view"
+generate_tables = "application"
 
 global_interfaces_base_space = "smarthome.service.bases"
 global_model_name_space = "smarthome.service.models"
@@ -266,7 +266,7 @@ def generate_single_mybatis_xml_mapper(schema_name, table_name, is_view=False):
 
     # result map
     xml_mapper_body += '''  <resultMap id="{0}Map" type="{1}.{0}" >\r'''.format(second_word_behind_capitalize(table_name, "_", True), global_model_name_space)
-    xml_mapper_body += "    <constructor >\r"
+    xml_mapper_body += "    <constructor>\r"
 
     if is_view == False:
         for column in primary_key_column:
