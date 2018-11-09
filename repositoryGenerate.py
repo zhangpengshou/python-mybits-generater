@@ -5,7 +5,7 @@ import postgreSQLDB
 
 generate_path = "d:/DataBase/code/"
 generate_schema = "devops"
-generate_tables = "appointment"
+generate_tables = "storage"
 
 # global_interfaces_base_space = "smart.base.bases"
 # global_model_name_space = "smart.repository.models"
@@ -22,7 +22,6 @@ global_java_mapper_name_space = "smart.devops.mapper"
 global_interfaces_name_space = "smart.devops.interfaces"
 global_repositorys_name_space = "smart.devops.repositorys"
 global_controller_name_sapce = "smart.api.controllers"
-
 
 # 获取当前数据库下所有表
 def get_all_tables():
@@ -54,10 +53,8 @@ def get_all_columns(schema, dbname):
     postgreSQLDB.close_connection(conn)
     return columns_list
 
-
 # sql和java数据类型转换
 def get_jdbc_type_from_sql_type(column_type):
-    jdbc_type = ""
     jdbc_type = str(column_type).lower()
 
     if column_type.find("int2") > -1:
@@ -84,7 +81,6 @@ def get_jdbc_type_from_sql_type(column_type):
         jdbc_type = "OTHER"
 
     return jdbc_type
-
 
 # sql和java数据类型转换
 def get_java_type_from_sql_type(column_type, return_fullname=False):

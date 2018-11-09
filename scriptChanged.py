@@ -7,6 +7,8 @@ schemaname=""
 tablename=""
 drop_view=""
 drop_table=""
+primarykeyname=""
+
 while True:
     line = scriptFile.readline()
     if line:
@@ -61,7 +63,18 @@ while True:
                 ext_primary_key = tablename.replace("data", "") + primary_key
             elif primary_key == "extend_id":
                 ext_primary_key = tablename.replace("extend", "") + primary_key
-            text += "   constraint pk_{0} primary key ({1})\r".format(ext_primary_key, primary_key)
+
+            if line.find("primary key") > -1:
+                primarykeyname = primary_key
+                text += "   constraint pk_{0} primary key ({1}){2}\r".\
+                    format(ext_primary_key, primary_key, "," if line.endswith(",\n") else "")
+
+            elif line.find("unique") > -1:
+                primarykeyname_withoutid = primarykeyname.replace("_id", "")
+                ext_primary_key = ext_primary_key.replace(",", "_").replace("__", "").replace(" ", "")
+                text += "   constraint uc_{0}_{1} unique ({2}){3}\r". \
+                    format(primarykeyname_withoutid, ext_primary_key.replace("_", "", 1) if ext_primary_key.startswith("_") else ext_primary_key, primary_key, "," if line.endswith(",\n") else "")
+
             if schemaname == "":
                 drop_sequence += "drop sequence if exists seq_{0};\r".format(ext_primary_key)
                 create_sequence += "create sequence seq_{0}  start 1001;\r".format(ext_primary_key)
