@@ -755,7 +755,6 @@ def generate_single_controller(schema_name, table_name, is_view=False):
     controller_header += "import {0}.I{1}Service;\r".format(global_interfaces_name_space, second_word_behind_capitalize(table_name, "_", True))
 
     controller_body += "\r@RestController\r"
-    controller_body += "@EnableWebMvc\r"
     controller_body += "public class {0}Controller {1}\r".format(second_word_behind_capitalize(table_name, "_", True), "{")
     controller_body += "    @Resource\r"
     controller_body += "    private I{0}Service {1}Service;\r\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"))
@@ -848,9 +847,6 @@ def generate_single_controller(schema_name, table_name, is_view=False):
     controller_body += "        List<{0}> {1}List = {1}Service.getList({1});\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"))
     controller_body += "        if({0}List.size() > 0){1}\r".format(second_word_behind_capitalize(table_name, "_"), "{")
     controller_body += "            rspResult.setData({0}List);\r".format(second_word_behind_capitalize(table_name, "_"))
-    controller_body += "        }\r"
-    controller_body += "        else{\r"
-    controller_body += '''            rspResult.setCode(Code.EMPTY_LIST);\r'''
     controller_body += "        }\r"
     controller_body += "        return rspResult;\r"
     controller_body += "    }\r\r"

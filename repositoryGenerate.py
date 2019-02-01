@@ -4,24 +4,24 @@ import os
 import postgreSQLDB
 
 generate_path = "d:/DataBase/code/"
-generate_schema = "devops"
-generate_tables = "storage"
-
-# global_interfaces_base_space = "smart.base.bases"
-# global_model_name_space = "smart.repository.models"
-# global_xml_mapper_name_space = "smart.repository.xmlmapper"
-# global_java_mapper_name_space = "smart.repository.mapper"
-# global_interfaces_name_space = "smart.repository.interfaces"
-# global_repositorys_name_space = "smart.repository.repositorys"
-# global_controller_name_sapce = "smart.api.controllers"
+generate_schema = ""
+generate_tables = "version"
 
 global_interfaces_base_space = "smart.base.bases"
-global_model_name_space = "smart.devops.models"
-global_xml_mapper_name_space = "smart.devops.xmlmapper"
-global_java_mapper_name_space = "smart.devops.mapper"
-global_interfaces_name_space = "smart.devops.interfaces"
-global_repositorys_name_space = "smart.devops.repositorys"
+global_model_name_space = "smart.repository.models"
+global_xml_mapper_name_space = "smart.repository.xmlmapper"
+global_java_mapper_name_space = "smart.repository.mapper"
+global_interfaces_name_space = "smart.repository.interfaces"
+global_repositorys_name_space = "smart.repository.repositorys"
 global_controller_name_sapce = "smart.api.controllers"
+
+# global_interfaces_base_space = "smart.base.bases"
+# global_model_name_space = "smart.devops.models"
+# global_xml_mapper_name_space = "smart.devops.xmlmapper"
+# global_java_mapper_name_space = "smart.devops.mapper"
+# global_interfaces_name_space = "smart.devops.interfaces"
+# global_repositorys_name_space = "smart.devops.repositorys"
+# global_controller_name_sapce = "smart.api.controllers"
 
 # 获取当前数据库下所有表
 def get_all_tables():
@@ -748,7 +748,6 @@ def generate_single_controller(schema_name, table_name, is_view=False):
     controller_header += "import {0}.I{1}Repository;\r".format(global_interfaces_name_space, second_word_behind_capitalize(table_name, "_", True))
 
     controller_body += "\r@RestController\r"
-    controller_body += "@EnableWebMvc\r"
     controller_body += "public class {0}Controller {1}\r".format(second_word_behind_capitalize(table_name, "_", True), "{")
     controller_body += "    @Resource\r"
     controller_body += "    private I{0}Repository {1}Repository;\r\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"))
@@ -841,9 +840,6 @@ def generate_single_controller(schema_name, table_name, is_view=False):
     controller_body += "        List<{0}> {1}List = {1}Repository.getList({1});\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"))
     controller_body += "        if({0}List.size() > 0){1}\r".format(second_word_behind_capitalize(table_name, "_"), "{")
     controller_body += "            rspResult.setData({0}List);\r".format(second_word_behind_capitalize(table_name, "_"))
-    controller_body += "        }\r"
-    controller_body += "        else{\r"
-    controller_body += '''            rspResult.setCode(Code.EMPTY_LIST);\r'''
     controller_body += "        }\r"
     controller_body += "        return rspResult;\r"
     controller_body += "    }\r\r"
