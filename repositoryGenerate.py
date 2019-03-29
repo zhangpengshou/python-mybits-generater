@@ -739,7 +739,6 @@ def generate_single_controller(schema_name, table_name, is_view=False):
     controller_header += "\rimport java.util.List;\r"
     controller_header += "import javax.annotation.Resource;\r"
     controller_header += "import org.springframework.web.bind.annotation.*;\r"
-    controller_header += "import org.springframework.web.servlet.config.annotation.EnableWebMvc;\r"
 
     controller_header += "import {0}.Code;\r".format(global_interfaces_base_space)
     controller_header += "import {0}.ApiVersion;\r".format(global_interfaces_base_space)
@@ -759,7 +758,7 @@ def generate_single_controller(schema_name, table_name, is_view=False):
         controller_body += "     * @return 通用Json格式\r"
         controller_body += "     */\r"
         controller_body += '''    @ApiVersion("1.0,latest")\r'''
-        controller_body += '''    @RequestMapping(value = "/{0}", method = RequestMethod.POST)\r'''.format(second_word_behind_capitalize(table_name, "_"))
+        controller_body += '''    @RequestMapping(value = "/{0}/add", method = RequestMethod.POST)\r'''.format(second_word_behind_capitalize(table_name, "_"))
         controller_body += "    public Response add({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
         controller_body += "        Response rspResult = new Response();\r"
         controller_body += "        if({0}Repository.count({0}) == 0){1}\r".format(second_word_behind_capitalize(table_name, "_"), "{")
@@ -779,11 +778,11 @@ def generate_single_controller(schema_name, table_name, is_view=False):
         controller_body += "                rspResult.setData({0});\r".format(second_word_behind_capitalize(table_name, "_"))
         controller_body += "            }\r"
         controller_body += "            else{\r"
-        controller_body += '''              rspResult.setCode(Code.INSERT_ERROR);\r'''
+        controller_body += '''              rspResult.setCode(Code.DEBUG_ERROR_INSERT);\r'''
         controller_body += "            }\r"
         controller_body += "        }\r"
         controller_body += "        else{\r"
-        controller_body += '''            rspResult.setCode(Code.ALREADY_EXISTS);\r'''
+        controller_body += '''            rspResult.setCode(Code.EXIST_SOURCE);\r'''
         controller_body += "        }\r"
         controller_body += "        return rspResult;\r"
         controller_body += "    }\r"
@@ -794,7 +793,7 @@ def generate_single_controller(schema_name, table_name, is_view=False):
         controller_body += "     * @return 通用Json格式\r"
         controller_body += "     */\r"
         controller_body += '''    @ApiVersion("1.0,latest")\r'''
-        controller_body += '''    @RequestMapping(value = "/{0}", method = RequestMethod.DELETE)\r'''.format(second_word_behind_capitalize(table_name, "_"))
+        controller_body += '''    @RequestMapping(value = "/{0}/delete", method = RequestMethod.DELETE)\r'''.format(second_word_behind_capitalize(table_name, "_"))
         controller_body += "    public Response delete({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
         controller_body += "        Response rspResult = new Response();\r"
         controller_body += "        if({0}Repository.count({0}) > 0){1}\r".format(second_word_behind_capitalize(table_name, "_"), "{")
@@ -802,11 +801,11 @@ def generate_single_controller(schema_name, table_name, is_view=False):
         controller_body += "                rspResult.setData({0});\r".format(second_word_behind_capitalize(table_name, "_"))
         controller_body += "            }\r"
         controller_body += "            else{\r"
-        controller_body += '''              rspResult.setCode(Code.DELETE_ERROR);\r'''
+        controller_body += '''              rspResult.setCode(Code.DEBUG_ERROR_DELETE);\r'''
         controller_body += "            }\r"
         controller_body += "        }\r"
         controller_body += "        else{\r"
-        controller_body += '''            rspResult.setCode(Code.NOT_EXISTS);\r'''
+        controller_body += '''            rspResult.setCode(Code.NOT_EXIST_DATA);\r'''
         controller_body += "        }\r"
         controller_body += "        return rspResult;\r"
         controller_body += "    }\r"
@@ -817,14 +816,14 @@ def generate_single_controller(schema_name, table_name, is_view=False):
         controller_body += "     * @return 通用Json格式\r"
         controller_body += "     */\r"
         controller_body += '''    @ApiVersion("1.0,latest")\r'''
-        controller_body += '''    @RequestMapping(value = "/{0}", method = RequestMethod.PUT)\r'''.format(second_word_behind_capitalize(table_name, "_"))
+        controller_body += '''    @RequestMapping(value = "/{0}/update", method = RequestMethod.PUT)\r'''.format(second_word_behind_capitalize(table_name, "_"))
         controller_body += "    public Response update({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
         controller_body += "        Response rspResult = new Response();\r"
         controller_body += "        if({0}Repository.update({0}) > 0){1}\r".format(second_word_behind_capitalize(table_name, "_"), "{")
         controller_body += "            rspResult.setData({0});\r".format(second_word_behind_capitalize(table_name, "_"))
         controller_body += "        }\r"
         controller_body += "        else{\r"
-        controller_body += '''          rspResult.setCode(Code.UPDATE_ERROR);\r'''
+        controller_body += '''          rspResult.setCode(Code.DEBUG_ERROR_UPDATE);\r'''
         controller_body += "        }\r"
         controller_body += "        return rspResult;\r"
         controller_body += "    }\r"
@@ -834,7 +833,7 @@ def generate_single_controller(schema_name, table_name, is_view=False):
     controller_body += "     * @return 通用Json格式\r"
     controller_body += "     */\r"
     controller_body += '''    @ApiVersion("1.0,latest")\r'''
-    controller_body += '''    @RequestMapping(value = "/{0}", method = RequestMethod.GET)\r'''.format(second_word_behind_capitalize(table_name, "_"))
+    controller_body += '''    @RequestMapping(value = "/{0}/list", method = RequestMethod.GET)\r'''.format(second_word_behind_capitalize(table_name, "_"))
     controller_body += "    public Response list({0} {1}) {2}\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"), "{")
     controller_body += "        Response rspResult = new Response();\r"
     controller_body += "        List<{0}> {1}List = {1}Repository.getList({1});\r".format(second_word_behind_capitalize(table_name, "_", True), second_word_behind_capitalize(table_name, "_"))
