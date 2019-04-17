@@ -5,7 +5,7 @@ import postgreSQLDB
 
 generate_path = "d:/DataBase/code/"
 generate_schema = ""
-generate_tables = "version"
+generate_tables = "account"
 
 global_interfaces_base_space = "smart.base.bases"
 global_model_name_space = "smart.repository.models"

@@ -3,8 +3,9 @@ scriptFile = open("D:\\DataBase\\Script\\public.sql", "r")
 text = ""
 drop_sequence= ""
 create_sequence= ""
-schemaname=""
 tablename=""
+schemaname=""
+mixedname= ""
 drop_view=""
 drop_table=""
 primarykeyname=""
@@ -37,18 +38,26 @@ while True:
         elif line.find(" DATE ") > -1:
             text += line.replace(" DATE ", "timestamp").replace("CURRENT_DATE", "CURRENT_TIMESTAMP")
         elif line.find("create table ") > -1:
-            tablename = line[line.find("create table ") + 13:line.find(" (")]
-            if tablename.find(".") > -1:
-                schemaname = tablename.split(".")[0]
+            mixedname = line[line.find("create table ") + 13:line.find(" (")]
+            if mixedname.find(".") > -1:
+                schemaname = mixedname.split(".")[0]
+                tablename = mixedname.split(".")[1]
             text += line
+        elif line.find("drop schema") > -1:
+            continue
+        elif line.find("create schema") > -1:
+            continue
+        elif line.find("comment on column") > -1:
+            if schemaname != "":
+                text += line.replace(tablename, mixedname)
         elif line.find("SERIAL") > -1:
             array = line.replace(" ","").split("SERIAL")
             primary_key = array[0]
             ext_primary_key = array[0]
             if primary_key == "data_id":
-                ext_primary_key = tablename.replace("data", "") + primary_key
+                ext_primary_key = mixedname.replace("data", "") + primary_key
             elif primary_key == "extend_id":
-                ext_primary_key = tablename.replace("extend", "") + primary_key
+                ext_primary_key = mixedname.replace("extend", "") + primary_key
 
             if schemaname == "":
                 text += "   {0}    BIGINT default nextval('seq_{1}')    {2}".format(array[0], ext_primary_key, array[1].replace("notnull", "not null"))
@@ -60,9 +69,9 @@ while True:
             primary_key = line[line.find("(") + 1:line.find(")")]
             ext_primary_key = line[line.find("(") + 1:line.find(")")]
             if primary_key == "data_id":
-                ext_primary_key = tablename.replace("data", "") + primary_key
+                ext_primary_key = mixedname.replace("data", "") + primary_key
             elif primary_key == "extend_id":
-                ext_primary_key = tablename.replace("extend", "") + primary_key
+                ext_primary_key = mixedname.replace("extend", "") + primary_key
 
             if line.find("primary key") > -1:
                 primarykeyname = primary_key
