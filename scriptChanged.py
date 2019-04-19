@@ -48,7 +48,9 @@ while True:
         elif line.find("create schema") > -1:
             continue
         elif line.find("comment on column") > -1:
-            if schemaname != "":
+            if schemaname == "":
+                text += line
+            else:
                 text += line.replace(tablename, mixedname)
         elif line.find("SERIAL") > -1:
             array = line.replace(" ","").split("SERIAL")

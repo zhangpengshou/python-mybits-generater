@@ -5,15 +5,15 @@ import postgreSQLDB
 
 generate_path = "d:/DataBase/code/"
 generate_schema = ""
-generate_tables = "account"
+generate_tables = "credit_user"
 
-global_interfaces_base_space = "smart.base.bases"
-global_model_name_space = "smart.repository.models"
-global_xml_mapper_name_space = "smart.repository.xmlmapper"
-global_java_mapper_name_space = "smart.repository.mapper"
-global_interfaces_name_space = "smart.repository.interfaces"
-global_repositorys_name_space = "smart.repository.repositorys"
-global_controller_name_sapce = "smart.api.controllers"
+# global_interfaces_base_space = "smart.base.bases"
+# global_model_name_space = "smart.repository.models"
+# global_xml_mapper_name_space = "smart.repository.xmlmapper"
+# global_java_mapper_name_space = "smart.repository.mapper"
+# global_interfaces_name_space = "smart.repository.interfaces"
+# global_repositorys_name_space = "smart.repository.repositorys"
+# global_controller_name_sapce = "smart.api.controllers"
 
 # global_interfaces_base_space = "smart.base.bases"
 # global_model_name_space = "smart.devops.models"
@@ -22,6 +22,14 @@ global_controller_name_sapce = "smart.api.controllers"
 # global_interfaces_name_space = "smart.devops.interfaces"
 # global_repositorys_name_space = "smart.devops.repositorys"
 # global_controller_name_sapce = "smart.api.controllers"
+
+global_interfaces_base_space = "smart.base.bases"
+global_model_name_space = "smart.guard.models"
+global_xml_mapper_name_space = "smart.guard.xmlmapper"
+global_java_mapper_name_space = "smart.guard.mapper"
+global_interfaces_name_space = "smart.guard.interfaces"
+global_repositorys_name_space = "smart.guard.repositorys"
+global_controller_name_sapce = "smart.api.controllers"
 
 # 获取当前数据库下所有表
 def get_all_tables():

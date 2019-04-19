@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a509b71-2ae4-4cdc-a516-51aac3c481b6" name="Default" comment="1、修改唯一约束生成逻辑；">
+    <list default="true" id="0a509b71-2ae4-4cdc-a516-51aac3c481b6" name="Default" comment="1、修复带schema的生成的脚本注释错误bug；">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/repositoryGenerate.py" beforeDir="false" afterPath="$PROJECT_DIR$/repositoryGenerate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scriptChanged.py" beforeDir="false" afterPath="$PROJECT_DIR$/scriptChanged.py" afterDir="false" />
@@ -23,8 +23,8 @@
     <SUITE FILE_PATH="coverage/MybatisGenerater$Python3_5.coverage" NAME="Python3.5 Coverage Results" MODIFIED="1464181151767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MybatisGenerater$Script.coverage" NAME="Script Coverage Results" MODIFIED="1534235794255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MybatisGenerater$Code.coverage" NAME="Code Coverage Results" MODIFIED="1511336484568" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/generator$Repository.coverage" NAME="Repository Coverage Results" MODIFIED="1555314993106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/generator$Script.coverage" NAME="Script Coverage Results" MODIFIED="1555471593627" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/generator$Repository.coverage" NAME="Repository Coverage Results" MODIFIED="1555494594837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/generator$Script.coverage" NAME="Script Coverage Results" MODIFIED="1555668186190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -37,8 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scriptChanged.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="51" column="23" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
+            <state relative-caret-position="317">
+              <caret line="53" column="58" selection-start-line="53" selection-start-column="58" selection-end-line="53" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -108,6 +108,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -119,7 +120,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -321,7 +321,9 @@
       <workItem from="1553597817419" duration="6720000" />
       <workItem from="1555308624823" duration="6000" />
       <workItem from="1555308646046" duration="5661000" />
-      <workItem from="1555470398185" duration="1193000" />
+      <workItem from="1555470398185" duration="2929000" />
+      <workItem from="1555494536587" duration="661000" />
+      <workItem from="1555667613715" duration="500000" />
     </task>
     <task id="LOCAL-00001" summary="添加select方法">
       <created>1463642302897</created>
@@ -484,11 +486,18 @@
       <option name="project" value="LOCAL" />
       <updated>1541758164666</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="1、修复带schema的生成的脚本注释错误bug；">
+      <created>1555471702628</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1555471702629</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32943000" />
+    <option name="totallyTimeSpent" value="35840000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -503,12 +512,12 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20643431" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21179625" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49932975" visible="true" weight="0.14022663" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49932975" visible="true" weight="0.194051" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.305949" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -516,7 +525,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3281471" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50067025" side_tool="true" weight="0.38297874" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.49503547" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.49433428" />
       <window_info anchor="bottom" id="Python Console" order="11" weight="0.32907802" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -558,7 +567,8 @@
     <MESSAGE value="1、修复controller生成过时的类问题；" />
     <MESSAGE value="1、修改controler中的Response；" />
     <MESSAGE value="1、修改唯一约束生成逻辑；" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修改唯一约束生成逻辑；" />
+    <MESSAGE value="1、修复带schema的生成的脚本注释错误bug；" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、修复带schema的生成的脚本注释错误bug；" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -580,6 +590,11 @@
       </expression>
     </expressions>
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>schemaname</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>line = line.replace(tablename, &quot;{0}.{1}&quot;.format(tablename, schemaname))</expression-string>
         <language-id>Python</language-id>
@@ -617,11 +632,6 @@
       </expression>
       <expression>
         <expression-string>ext_primary_key.replace(&quot;,&quot;, &quot;_&quot;).replace(primarykeyname_withoutid, &quot;&quot;).replace(&quot;__&quot;, &quot;&quot;).replace(&quot; &quot;, &quot;&quot;)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>ext_primary_key.replace(tablename, &quot;&quot;).replace(&quot;,&quot;, &quot;_&quot;).replace(&quot;__&quot;,&quot;&quot;).replace(tablename, &quot;&quot;)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -667,8 +677,8 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/pycharm64.exe.vmoptions" />
     <entry file="file://$PROJECT_DIR$/repositoryGenerate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="15" column="54" lean-forward="true" selection-start-line="15" selection-start-column="54" selection-end-line="15" selection-end-column="54" />
+        <state relative-caret-position="19">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
           <folding>
             <element signature="e#24#33#0" expanded="true" />
           </folding>
@@ -677,8 +687,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scriptChanged.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="51" column="23" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
+        <state relative-caret-position="317">
+          <caret line="53" column="58" selection-start-line="53" selection-start-column="58" selection-end-line="53" selection-end-column="58" />
         </state>
       </provider>
     </entry>
